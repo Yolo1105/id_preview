@@ -11,14 +11,15 @@ import {
 } from "@react-three/drei";
 import * as THREE from "three";
 import type { Group } from "three";
+import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { useAppState, useAppActions } from "@/state/store";
 import { computeFitState } from "@/logic/fit";
 import Room from "./Room";
 import FurnitureMesh from "./FurnitureMesh";
 
 export interface SceneRefs {
-  controlsRef: React.RefObject<unknown>;
-  selectedRef: React.RefObject<Group | null>;
+  controlsRef: React.RefObject<OrbitControlsImpl>;
+  selectedRef: React.RefObject<Group>;
 }
 
 interface SceneProps {
@@ -132,7 +133,8 @@ export default function Scene({
               }
             }}
             onObjectChange={(e) => {
-              const obj = e?.target?.object;
+              const target = e?.target as { object?: THREE.Object3D } | undefined;
+              const obj = target?.object;
               if (obj && selectedItem) {
                 updateFurniture(selectedItem.id, {
                   position: [obj.position.x, obj.position.y, obj.position.z],

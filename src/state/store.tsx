@@ -142,33 +142,33 @@ export function useAppActions() {
   const { state, dispatch } = useAppState();
   const setRoomDimensions = useCallback(
     (dims: RoomDimensions) => dispatch({ type: "SET_ROOM_DIMENSIONS", payload: dims }),
-    []
+    [dispatch]
   );
   const addFurniture = useCallback(
     (template: FurnitureTemplate) => dispatch({ type: "ADD_FURNITURE", payload: template }),
-    []
+    [dispatch]
   );
   const removeFurniture = useCallback(
     (id: string) => dispatch({ type: "REMOVE_FURNITURE", payload: id }),
-    []
+    [dispatch]
   );
   const updateFurniture = useCallback(
     (id: string, updates: Partial<FurnitureItem>) =>
       dispatch({ type: "UPDATE_FURNITURE", payload: { id, updates } }),
-    []
+    [dispatch]
   );
   const selectItem = useCallback(
     (id: string | null) => dispatch({ type: "SELECT_ITEM", payload: id }),
-    []
+    [dispatch]
   );
-  const clearAll = useCallback(() => dispatch({ type: "CLEAR_ALL" }), []);
+  const clearAll = useCallback(() => dispatch({ type: "CLEAR_ALL" }), [dispatch]);
   const loadLayout = useCallback(
     (layout: LayoutExport) => dispatch({ type: "LOAD_LAYOUT", payload: layout }),
-    []
+    [dispatch]
   );
   const toggleBoundingBoxes = useCallback(
     () => dispatch({ type: "TOGGLE_BOUNDING_BOXES" }),
-    []
+    [dispatch]
   );
   const exportLayout = useCallback((): LayoutExport => {
     return {

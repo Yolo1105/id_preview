@@ -4,6 +4,7 @@ import React, { useRef, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { useAppState, useAppActions } from "@/state/store";
 import type { Group } from "three";
+import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import type { SceneRefs } from "@/components/canvas/Scene";
 import { useIsMobile } from "@/hooks/useMediaQuery";
 import Header from "./Header";
@@ -34,8 +35,8 @@ export default function CombinedLayout() {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [mobileFitOpen, setMobileFitOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const controlsRef = useRef<unknown>(null);
-  const selectedRef = useRef<Group | null>(null);
+  const controlsRef = useRef<OrbitControlsImpl>(null);
+  const selectedRef = useRef<Group>(null);
 
   const refs: SceneRefs = { controlsRef, selectedRef };
 
